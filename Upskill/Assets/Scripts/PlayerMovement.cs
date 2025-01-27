@@ -53,18 +53,19 @@ public class NewMonoBehaviourScript : MonoBehaviour {
         
         //fighting
         if (!canAttack) { return; }
-        if (lightAttack.IsPressed()){
+        if (lightAttack.WasPressedThisFrame()){
             LightAttack();
-        }else if (specialAtk1.IsPressed()){
+        }else if (specialAtk1.WasPressedThisFrame()){
 
-        } else if (specialAtk2.IsPressed()){
+        } else if (specialAtk2.WasPressedThisFrame()){
 
-        } else if (specialAtk3.IsPressed()){
+        } else if (specialAtk3.WasPressedThisFrame()){
 
         }
     }
 
     void LightAttack() {
         //implement light attack here. set animation? fire event? Idk how
+        Debug.Log("LightAttack");
     }
 }
