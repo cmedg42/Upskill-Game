@@ -8,6 +8,11 @@ public class NewMonoBehaviourScript : MonoBehaviour {
     private InputAction specialAtk2;
     private InputAction specialAtk3;
 
+    public LayerMask enemyLayers;
+    [SerializeField]private Transform lightAtkPt;
+    public float lightAtkRng = 0.5f;
+
+
     public bool canMove = true;
     public bool canAttack = true;
 
@@ -67,5 +72,17 @@ public class NewMonoBehaviourScript : MonoBehaviour {
     void LightAttack() {
         //implement light attack here. set animation? fire event? Idk how
         Debug.Log("LightAttack");
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(lightAtkPt.position, lightAtkRng, enemyLayers);
+
+        foreach(Collider2D enemy in hitEnemies)
+        {
+            Debug.Log("Hit enemy: " + enemy.name);
+            enemy.GetComponent<Health>().ChangeHealth(5);
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(lightAtkPt.position, lightAtkRng);
     }
 }
