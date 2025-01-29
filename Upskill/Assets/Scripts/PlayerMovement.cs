@@ -12,6 +12,7 @@ public class NewMonoBehaviourScript : MonoBehaviour {
     [SerializeField]private Transform lightAtkPt;
     public float lightAtkRng = 0.5f;
 
+    public Transform Player;
 
     public bool canMove = true;
     public bool canAttack = true;
@@ -39,6 +40,7 @@ public class NewMonoBehaviourScript : MonoBehaviour {
     {
         Vector2 position = (Vector2)rigidbody2d.position + dir * spd * Time.deltaTime;
         rigidbody2d.MovePosition(position);
+        Player = GetComponent<Transform>();
     }
 
 
@@ -67,6 +69,17 @@ public class NewMonoBehaviourScript : MonoBehaviour {
         } else if (specialAtk3.WasPressedThisFrame()){
 
         }
+
+        // flips player sprite
+        if (rigidbody2d.linearVelocity.x >= 0.01f)
+        {
+            Player.localScale = new Vector3(1f, 1f, 1f);
+        }
+        else if (rigidbody2d.linearVelocity.x <= -0.01f)
+        {
+            Player.localScale = new Vector3(-1f, 1f, 1f);
+        }
+
     }
 
     void LightAttack() {
