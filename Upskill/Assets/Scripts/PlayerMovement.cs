@@ -12,10 +12,9 @@ public class NewMonoBehaviourScript : MonoBehaviour {
     [SerializeField]private Transform lightAtkPt;
     public float lightAtkRng = 0.5f;
 
-    public Transform Player;
-
     public bool canMove = true;
     public bool canAttack = true;
+    private bool facingRight = true;
 
     //private float ud;
     //private float lr;
@@ -40,46 +39,51 @@ public class NewMonoBehaviourScript : MonoBehaviour {
     {
         Vector2 position = (Vector2)rigidbody2d.position + dir * spd * Time.deltaTime;
         rigidbody2d.MovePosition(position);
-        Player = GetComponent<Transform>();
     }
 
 
     // Update is called once per frame
-    void Update() {
+    void Update()
+    {
         //ud = Input.GetAxisRaw("Vertical");
         //lr = Input.GetAxisRaw("Horizontal");
         //dir = new Vector2(lr, ud);
         //movement
         dir = moveAction.ReadValue<Vector2>();
-        if (canMove && dir.magnitude >= 0.04) {
+        if (canMove && dir.magnitude >= 0.04)
+        {
             dir.Normalize();
-        } else
+        }
+        else
         {
             dir = Vector2.zero;
         }
-        
+
         //fighting
         if (!canAttack) { return; }
-        if (lightAttack.WasPressedThisFrame()){
+        if (lightAttack.WasPressedThisFrame())
+        {
             LightAttack();
-        }else if (specialAtk1.WasPressedThisFrame()){
-
-        } else if (specialAtk2.WasPressedThisFrame()){
-
-        } else if (specialAtk3.WasPressedThisFrame()){
-
         }
-
-        // flips player sprite
-        if (rigidbody2d.linearVelocity.x >= 0.01f)
+        else if (specialAtk1.WasPressedThisFrame())
         {
-            Player.localScale = new Vector3(1f, 1f, 1f);
+
         }
-        else if (rigidbody2d.linearVelocity.x <= -0.01f)
+        else if (specialAtk2.WasPressedThisFrame())
         {
-            Player.localScale = new Vector3(-1f, 1f, 1f);
+
+        }
+        else if (specialAtk3.WasPressedThisFrame())
+        {
+
         }
 
+        // flips player
+        if (dir.x < 0 && facingRight || dir.x > 0 && !facingRight)
+        {
+            facingRight = !facingRight;
+            transform.Rotate(0, 180, 0);
+        }
     }
 
     void LightAttack() {
