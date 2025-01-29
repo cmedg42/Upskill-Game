@@ -16,6 +16,8 @@ public class NewMonoBehaviourScript : MonoBehaviour {
     public bool canAttack = true;
     private bool facingRight = true;
 
+    public Animator animator;
+
     //private float ud;
     //private float lr;
     private Vector2 dir;
@@ -64,6 +66,7 @@ public class NewMonoBehaviourScript : MonoBehaviour {
         if (lightAttack.WasPressedThisFrame())
         {
             LightAttack();
+            animator.SetBool("isAttacking", true);
         }
         else if (specialAtk1.WasPressedThisFrame())
         {
@@ -84,6 +87,9 @@ public class NewMonoBehaviourScript : MonoBehaviour {
             facingRight = !facingRight;
             transform.Rotate(0, 180, 0);
         }
+
+        // determines when idling and when walking
+        animator.SetFloat("Speed", Mathf.Abs(dir.magnitude));
     }
 
     void LightAttack() {
@@ -97,6 +103,12 @@ public class NewMonoBehaviourScript : MonoBehaviour {
             enemy.GetComponent<Health>().ChangeHealth(5);
         }
     }
+
+    public void OnAttackFinished()
+    {
+        animator.SetBool("isAttacking", false);
+    }
+
 
     private void OnDrawGizmosSelected()
     {

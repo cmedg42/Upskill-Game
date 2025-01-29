@@ -1,5 +1,6 @@
 using UnityEngine;
 using Pathfinding;
+using System.Collections;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -16,6 +17,10 @@ public class EnemyAI : MonoBehaviour
 
     Seeker seeker;
     Rigidbody2D rigidbody;
+
+    [SerializeField] private Transform attackPoint;
+    public float attackRange = 0.5f;
+    public LayerMask playerLayer;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -44,7 +49,15 @@ public class EnemyAI : MonoBehaviour
             path = p;
             currentWaypoint = 0;
         }
+    }
 
+    private void CheckAttack()
+    {
+        // checks if player is in range
+        if (Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerLayer) != null)
+        {
+     
+        }
     }
 
 
@@ -77,6 +90,7 @@ public class EnemyAI : MonoBehaviour
             currentWaypoint++;
         }
 
+        // flips enemy
         if (rigidbody.linearVelocity.x >= 0.01f)
         {
             Enemy.localScale = new Vector3(1f, 1f, 1f);
@@ -86,5 +100,7 @@ public class EnemyAI : MonoBehaviour
             Enemy.localScale = new Vector3(-1f, 1f, 1f);
         }
 
+        CheckAttack();
     }
+
 }
