@@ -18,9 +18,8 @@ public class EnemyAI : MonoBehaviour
     Seeker seeker;
     Rigidbody2D rigidbody;
 
-    [SerializeField] private Transform attackPoint;
-    public float attackRange = 0.5f;
-    public LayerMask playerLayer;
+    [SerializeField] private Transform player;
+    private float enemyWakeupRange = 10.0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -30,7 +29,7 @@ public class EnemyAI : MonoBehaviour
         Enemy = GetComponent<Transform>();
 
         // 3rd param is how often the path is updated
-        InvokeRepeating("UpdatePath", 0f, 1f);
+        InvokeRepeating("UpdatePath", 0f, 0.2f);
     }
 
     void UpdatePath()
@@ -51,19 +50,18 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    private void CheckAttack()
-    {
-        // checks if player is in range
-        if (Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerLayer) != null)
-        {
-     
-        }
-    }
 
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        float distance = Vector2.Distance(player.position, transform.position);
+
+        //if (distance > enemyWakeupRange)
+        //{
+        //    return;
+        //}
+
         if (path == null)
         {
             return;
@@ -83,7 +81,7 @@ public class EnemyAI : MonoBehaviour
 
         rigidbody.AddForce(force);
 
-        float distance = Vector2.Distance(rigidbody.position, path.vectorPath[currentWaypoint]);
+        float distanceToPlayer = Vector2.Distance(rigidbody.position, path.vectorPath[currentWaypoint]);
 
         if (distance < nextWaypointDistance)
         {
@@ -99,8 +97,5 @@ public class EnemyAI : MonoBehaviour
         {
             Enemy.localScale = new Vector3(-1f, 1f, 1f);
         }
-
-        CheckAttack();
     }
-
 }

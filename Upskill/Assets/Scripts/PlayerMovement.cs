@@ -9,7 +9,7 @@ public class NewMonoBehaviourScript : MonoBehaviour {
     private InputAction specialAtk3;
 
     public LayerMask enemyLayers;
-    [SerializeField]private Transform lightAtkPt;
+    [SerializeField] private Transform lightAtkPt;
     public float lightAtkRng = 0.5f;
 
     public bool canMove = true;
@@ -17,6 +17,8 @@ public class NewMonoBehaviourScript : MonoBehaviour {
     private bool facingRight = true;
 
     public Animator animator;
+
+    [SerializeField] private Cooldown cooldown;
 
     //private float ud;
     //private float lr;
@@ -65,8 +67,10 @@ public class NewMonoBehaviourScript : MonoBehaviour {
         if (!canAttack) { return; }
         if (lightAttack.WasPressedThisFrame())
         {
-            LightAttack();
+            if (cooldown.IsCoolingDown) return;
             animator.SetBool("isAttacking", true);
+            LightAttack();
+            cooldown.StartCooldown();
         }
         else if (specialAtk1.WasPressedThisFrame())
         {
