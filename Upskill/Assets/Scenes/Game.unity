@@ -175,7 +175,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.0045344234, y: -0.0015114546}
+  m_Offset: {x: -0.0045344234, y: -0.14344166}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -185,7 +185,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.2775194, y: 0.5677209}
+  m_Size: {x: 0.2775194, y: 0.28386045}
   m_EdgeRadius: 0
 --- !u!212 &42810768
 SpriteRenderer:
@@ -251,7 +251,7 @@ Transform:
   m_GameObject: {fileID: 42810765}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.0873, y: -0.4471, z: -0.0243}
+  m_LocalPosition: {x: 2.068, y: -0.644, z: -0.0243}
   m_LocalScale: {x: 3.7613, y: 3.7613, z: 3.7613}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -564,7 +564,7 @@ Transform:
   m_GameObject: {fileID: 709431312}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.231, y: 0.069, z: -0.024278121}
+  m_LocalPosition: {x: 0.231, y: -0.112, z: -0.024278121}
   m_LocalScale: {x: 1, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1057,7 +1057,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6796906942729347006, guid: 767efac1a6e11704c9522b91d140a87c, type: 3}
       propertyPath: m_Size.y
-      value: 0.5507865
+      value: 0.27539325
       objectReference: {fileID: 0}
     - target: {fileID: 6796906942729347006, guid: 767efac1a6e11704c9522b91d140a87c, type: 3}
       propertyPath: m_Offset.x
@@ -1065,7 +1065,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6796906942729347006, guid: 767efac1a6e11704c9522b91d140a87c, type: 3}
       propertyPath: m_Offset.y
-      value: -0.0029874444
+      value: -0.14068404
       objectReference: {fileID: 0}
     - target: {fileID: 6796906942729347006, guid: 767efac1a6e11704c9522b91d140a87c, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
