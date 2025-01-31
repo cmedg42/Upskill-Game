@@ -69,7 +69,6 @@ public class NewMonoBehaviourScript : MonoBehaviour {
         {
             if (cooldown.IsCoolingDown) return;
             animator.SetBool("isAttacking", true);
-            LightAttack();
             cooldown.StartCooldown();
         }
         else if (specialAtk1.WasPressedThisFrame())

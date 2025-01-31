@@ -19,7 +19,7 @@ public class EnemyAI : MonoBehaviour
     Rigidbody2D rigidbody;
 
     [SerializeField] private Transform player;
-    private float enemyWakeupRange = 10.0f;
+    private float enemyWakeupRange = 5.0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -50,17 +50,19 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    // figure out player on enemy collisions
 
+    
 
     // Update is called once per frame
     void FixedUpdate()
     {
         float distance = Vector2.Distance(player.position, transform.position);
 
-        //if (distance > enemyWakeupRange)
-        //{
-        //    return;
-        //}
+        if (distance > enemyWakeupRange)
+        {
+            return;
+        }
 
         if (path == null)
         {
@@ -89,13 +91,13 @@ public class EnemyAI : MonoBehaviour
         }
 
         // flips enemy
-        if (rigidbody.linearVelocity.x >= 0.01f)
+        if (rigidbody.linearVelocity.x >= 0.1f)
         {
-            Enemy.localScale = new Vector3(1f, 1f, 1f);
+            Enemy.localScale = new Vector3(3.7613f, 3.7613f, 3.7613f);
         }
-        else if (rigidbody.linearVelocity.x <= -0.01f)
+        else if (rigidbody.linearVelocity.x <= -0.1f)
         {
-            Enemy.localScale = new Vector3(-1f, 1f, 1f);
+            Enemy.localScale = new Vector3(-3.7613f, 3.7613f, 3.7613f);
         }
     }
 }
